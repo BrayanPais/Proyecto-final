@@ -1,0 +1,14 @@
+5/21/2025
+Investigacion:
+El control de asistencias es un sistema que registra y monitorea las horas de entrada y salida de los empleados, así como las incidencias de ausencias, tardanzas, licencias y otros aspectos relacionados con la jornada laboral. Su objetivo principal es asegurar el cumplimiento de horarios, gestionar la asistencia y obtener información para la toma de decisiones en Recursos Humanos. 
+Conceptos clave:
+Registro de asistencia:
+El proceso de registrar la presencia de los empleados en el trabajo, generalmente mediante la anotación de las horas de entrada y salida. 
+Horarios de trabajo:
+Los periodos establecidos para la jornada laboral de los empleados, que pueden ser regulares o flexibles. 
+Ausencias:
+Cualquier situación en la que un empleado no se presenta a trabajar en su horario habitual, ya sea por motivos de enfermedad, vacaciones o permisos. 
+Tardanzas:
+Retrasos en la hora de entrada al trabajo, que pueden tener diferentes causas. 
+Licencias:
+Permisos concedidos por la empresa para ausentarse del trabajo durante un tiempo determinado, ya sean licencias pagadas o no pagadas. 
