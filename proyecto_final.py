@@ -12,12 +12,15 @@ def asistencia():
     if nombre==nombre_registrado:
         if no_trabajo==no_trabajo_registrado:
             if hora_actual_dt > hora_entrada_dt:
-                if hora_actual_dt > hora_entrada_dt + timedelta(minutes=10):
+                if hora_actual_dt > hora_entrada_dt + timedelta(minutes=10) and hora_actual_dt < hora_entrada_dt + timedelta(hours=7, minutes=30):
                     rive_asis["Retardos mayores"]+=1
                     resultado_label.config(text="Se ha tomado asistencia con una falta mayor")
                     if rive_asis["Retardos mayores"]==2:
                         rive_asis["Faltas"]+=1
                         rive_asis["Retardos mayores"]=0
+                elif hora_actual_dt > hora_entrada_dt + timedelta(hours=7, minutes=30):
+                    rive_asis["Faltas"]+=1
+                    resultado_label.config(text="Se ha tomado una falta")        
                 else:
                     rive_asis["Retardos menores"]+=1
                     resultado_label.config(text="Se ha tomado asistencia con una falta menor")
