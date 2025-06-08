@@ -22,7 +22,7 @@ class persona():
                             empresa[f"{self.nombre}"]["Retardos mayores"]=0
                         with open ("Asistencia_de_trabajadores.txt","a") as archivo:
                             archivo.write(f"{self.nombre} ha tomado asistencia con una falta mayor\n")
-                    elif hora_actual_dt > hora_entrada_dt + timedelta(hours=7, minutes=30):
+                    elif hora_actual_dt > hora_entrada_dt + timedelta(hours=8, minutes=30):
                         empresa[f"{self.nombre}"]["Faltas"]+=1
                         resultado_label.config(text="Se ha tomado una falta")
                         with open ("Asistencia_de_trabajadores.txt","a") as archivo:
@@ -48,22 +48,34 @@ def asistencia():
     nombre=entrada1.get()
     no_trabajo=int(entrada2.get())
     nombre_minusculas=nombre.lower()
-    hora_entrada=time(empresa[f"{nombre_minusculas}"]["Hora entrada"],0,0)
+    if empresa[f"{nombre_minusculas}"]["Turno"]=="Matutino":
+        hora_entrada=time(7,0,0)
+    elif empresa[f"{nombre_minusculas}"]["Turno"]=="Vespertino":
+        hora_entrada=time(15,0,0)
+    elif empresa[f"{nombre_minusculas}"]["Turno"]=="Nocturno":
+        hora_entrada=time(23,0,0)        
     persona1=persona(nombre_minusculas,no_trabajo,hora_entrada)
     persona1.tomar_asistencia()    
 ventana = tk.Tk()
 ventana.title("Sistema de asistencias")
 empresa={
- "rivelino":{"Nombre":"rivelino",
-  "Edad":30,
-  "N°.trabajador":123456,
-  "Hora entrada":7,
-  "Hora salida":14,
-  "Minutos salida":30,
-  "Asistencias totales":0,
-  "Retardos menores":0,
-  "Retardos mayores":0,
-  "Faltas":0}
+    "rivelino":{"Nombre":"rivelino",
+        "Edad":30,
+        "N°.trabajador":123456,
+        "Turno":"Matutino",
+        "Asistencias totales":0,
+        "Retardos menores":0,
+        "Retardos mayores":0,
+        "Faltas":0
+    },
+    "oscar":{"Nombre":"oscar",
+        "Edad":31,
+        "N°.trabajador":654321,
+        "Turno":"Vespertino",
+        "Asistencias totales":0,
+        "Retardos menores":0,
+        "Retardos mayores":0,
+        "Faltas":0}
 }
 label1 = tk.Label(ventana, text="Ingresa tu nombre:")
 label1.grid(row=0, column=0, padx=5, pady=5)  
