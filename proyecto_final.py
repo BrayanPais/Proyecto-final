@@ -44,6 +44,45 @@ class persona():
                 resultado_label.config(text="El numero de trabajador no esta registrado")    
         else:
             resultado_label.config(text="El nombre ingresado no esta registrado")
+def interfas_uno():
+    area_dinamica_limpia()
+    tk.Label(area_dinamica, text="Toma de asistencia", font=("Arial", 14)).pack(pady=10)
+    label1 = tk.Label(area_dinamica, text="Ingresa tu nombre:")
+    label1.pack(pady=5)  
+    entrada1 = tk.Entry(area_dinamica)
+    entrada1.pack(pady=5)  
+    label2 = tk.Label(area_dinamica, text="Ingresa tu N° de trabajador:")
+    label2.pack(pady=5)  
+    entrada2 = tk.Entry(area_dinamica)
+    entrada2.pack(pady=5)
+    label3 = tk.Label(area_dinamica, text="Ingresa tu ocupacion:")
+    label3.pack(pady=5)
+    entrada3 = tk.Entry(area_dinamica)
+    entrada3.pack(pady=5)  
+    sumar_btn = tk.Button(area_dinamica, text="Tomar asistencia", command=asistencia)
+    sumar_btn.pack(pady=5)
+    resultado_label = tk.Label(area_dinamica, text="")
+    resultado_label.pack(pady=5)
+def interfas_dos():
+    area_dinamica_limpia()
+    global a
+    a=1
+def comprobar_contraseña():
+    contraseña=int(entrada1.get())
+    if contraseña==1113420:
+        if a==1:
+            interfas_dos()
+        elif a==2:
+            pass
+        else:
+            pass
+    else:
+        if a==1:
+            pass
+        elif a==2:
+            pass
+        else:
+            pass
 def asistencia():
     nombre=entrada1.get()
     no_trabajo=int(entrada2.get())
@@ -55,42 +94,41 @@ def asistencia():
     elif empresa[f"{nombre_minusculas}"]["Turno"]=="Nocturno":
         hora_entrada=time(23,0,0)        
     persona1=persona(nombre_minusculas,no_trabajo,hora_entrada)
-    persona1.tomar_asistencia()    
+    persona1.tomar_asistencia()
+def area_dinamica_limpia():
+    for widget in area_dinamica.winfo_children():
+        widget.destroy()
 ventana = tk.Tk()
 ventana.title("Sistema de asistencias")
+ventana.geometry("500x400")
 empresa={
-    "rivelino":{"Nombre":"rivelino",
-        "Edad":30,
-        "N°.trabajador":123456,
-        "Turno":"Matutino",
-        "Asistencias totales":0,
-        "Retardos menores":0,
-        "Retardos mayores":0,
-        "Faltas":0
-    },
-    "oscar":{"Nombre":"oscar",
-        "Edad":31,
-        "N°.trabajador":654321,
-        "Turno":"Vespertino",
-        "Asistencias totales":0,
-        "Retardos menores":0,
-        "Retardos mayores":0,
-        "Faltas":0}
+    "rivelino":{"Nombre":"rivelino","Edad":30,"N°.trabajador":123456,"Turno":"Matutino","Asistencias totales":0,"Retardos menores":0,"Retardos mayores":0,"Faltas":0},
+    "oscar":{"Nombre":"oscar","Edad":31,"N°.trabajador":654321,"Turno":"Vespertino","Asistencias totales":0,"Retardos menores":0,"Retardos mayores":0,"Faltas":0},
+    "ashley":{"Nombre":"ashley","Edad":20,"N°.trabajador":987654,"Turno":"Nocturno","Asistencias totales":0,"Retardos menores":0,"Retardos mayores":0,"Faltas":0}
 }
-label1 = tk.Label(ventana, text="Ingresa tu nombre:")
-label1.grid(row=0, column=0, padx=5, pady=5)  
-entrada1 = tk.Entry(ventana)
-entrada1.grid(row=0, column=1, padx=5, pady=5)  
-label2 = tk.Label(ventana, text="Ingresa tu N° de trabajador:")
-label2.grid(row=1, column=0, padx=5, pady=5)  
-entrada2 = tk.Entry(ventana)
-entrada2.grid(row=1, column=1, padx=5, pady=5)
-label3 = tk.Label(ventana, text="Ingresa tu ocupacion")
-label3.grid(row=2, column=0, padx=5, pady=5)
-entrada3 = tk.Entry(ventana)
-entrada3.grid(row=2, column=1, padx=5, pady=5)  
-sumar_btn = tk.Button(ventana, text="Tomar asistencia", command=asistencia)  
-sumar_btn.grid(row=3, column=0, columnspan=2, pady=10)  
-resultado_label = tk.Label(ventana, text="")
-resultado_label.grid(row=4, column=0, columnspan=2, pady=5)
+menu_lateral = tk.Frame(ventana, bg="lightblue", width=120)
+menu_lateral.pack(side="left", fill="y")
+area_dinamica = tk.Frame(ventana, bg="white")
+area_dinamica.pack(side="right", expand=True, fill="both")
+tk.Button(menu_lateral, text="Tomar asistencia",command=interfas_uno, width=15).pack(pady=10)
+tk.Button(menu_lateral, text="Agregar registro",command=interfas_dos, width=15).pack(pady=10)
+tk.Button(menu_lateral, text="Cambiar registro", width=15).pack(pady=10)
+tk.Button(menu_lateral, text="Eliminar registro", width=15).pack(pady=10)
+tk.Label(area_dinamica, text="Toma de asistencia", font=("Arial", 14)).pack(pady=10)
+label1 = tk.Label(area_dinamica, text="Ingresa tu nombre:")
+label1.pack(pady=5)
+entrada1 = tk.Entry(area_dinamica)
+entrada1.pack(pady=5)
+label2 = tk.Label(area_dinamica, text="Ingresa tu N° de trabajador:")
+label2.pack(pady=5)
+entrada2 = tk.Entry(area_dinamica)
+entrada2.pack(pady=5)
+label3 = tk.Label(area_dinamica, text="Ingresa tu ocupacion:")
+label3.pack(pady=5)
+entrada3 = tk.Entry(area_dinamica)
+entrada3.pack(pady=5)
+sumar_btn = tk.Button(area_dinamica, text="Tomar asistencia", command=asistencia)
+sumar_btn.pack(pady=5)
+resultado_label = tk.Label(area_dinamica, text="")
+resultado_label.pack(pady=5)
 ventana.mainloop()
